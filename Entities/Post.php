@@ -32,6 +32,28 @@ class Post extends Model implements TaggableInterface
     }
 
     /**
+     * Get content snipet
+     * @return string
+     */
+    public function snipet($length = 200){
+        $content = mb_substr($this->content, 0, $length);
+        $lastSpace = strrpos($content, ' ');
+        if ($lastSpace > $length / 2){
+            $content = mb_substr($content, 0, $lastSpace);
+        }
+        return $content;
+    }
+
+    /**
+     * Get content snipet
+     * @return string
+     */
+    public function prettyDate(){
+        $time = strtotime($this->created_at);
+        return sprintf('%s. %s %s', date("d", $time), date("M", $time), date('Y', $time)); //trans('months.'.date("F", $time))
+    }
+
+    /**
      * Get the thumbnail image for the current blog post
      * @return File|string
      */
