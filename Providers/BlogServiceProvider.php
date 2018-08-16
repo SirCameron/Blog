@@ -96,8 +96,18 @@ class BlogServiceProvider extends ServiceProvider
     {
         $this->app[ThumbnailManager::class]->registerThumbnail('blogThumb', [
             'fit' => [
-                'width' => '150',
-                'height' => '150',
+                'width' => '700',
+                'height' => '700',
+                'callback' => function ($constraint) {
+                    $constraint->upsize();
+                },
+            ],
+        ]);
+
+        $this->app[ThumbnailManager::class]->registerThumbnail('blogLarge', [
+            'fit' => [
+                'width' => '1440',
+                'height' => '900',
                 'callback' => function ($constraint) {
                     $constraint->upsize();
                 },

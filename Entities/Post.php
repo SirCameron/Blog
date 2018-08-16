@@ -18,7 +18,7 @@ class Post extends Model implements TaggableInterface
     use Translatable, MediaRelation, PresentableTrait, NamespacedEntity, TaggableTrait;
 
     public $translatedAttributes = ['title', 'slug', 'content'];
-    protected $fillable = ['category_id', 'status', 'title', 'slug', 'content'];
+    protected $fillable = ['category_id', 'status', 'title', 'slug', 'content', 'published'];
     protected $table = 'blog__posts';
     protected $presenter = PostPresenter::class;
     protected $casts = [
@@ -49,7 +49,7 @@ class Post extends Model implements TaggableInterface
      * @return string
      */
     public function prettyDate(){
-        $time = strtotime($this->created_at);
+        $time = strtotime($this->published);
         return sprintf('%s. %s %s', date("d", $time), date("M", $time), date('Y', $time)); //trans('months.'.date("F", $time))
     }
 

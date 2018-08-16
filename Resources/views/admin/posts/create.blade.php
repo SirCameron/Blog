@@ -60,6 +60,10 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div class="form-group">
+                    {!! Form::label("published", 'Publish Date:') !!}
+                    <input name="published" id="published" class="form-control" />
+                </div>
                 @tags('asgardcms/post')
                 @mediaSingle('thumbnail')
             </div>
@@ -87,6 +91,9 @@
                 { key: 'b', route: "<?= route('admin.blog.post.index') ?>" }
             ]
         });
+
+        $("#published").datepicker( $.datepicker.regional[ "{{ locale() }}" ] );
+        $("#published").datepicker("option", "dateFormat", "yy-mm-dd");
     });
 </script>
 @stop
