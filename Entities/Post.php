@@ -36,7 +36,7 @@ class Post extends Model implements TaggableInterface
      * @return string
      */
     public function snipet($length = 200){
-        $content = mb_substr($this->content, 0, $length);
+        $content = mb_substr(strip_tags($this->content), 0, $length);
         $lastSpace = strrpos($content, ' ');
         if ($lastSpace > $length / 2){
             $content = mb_substr($content, 0, $lastSpace);
