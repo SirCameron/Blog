@@ -108,7 +108,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function getPreviousOf($post)
     {
-        return $this->model->where('published', '<', $post->created_at)
+        return $this->model->where('published', '<', $post->published)
             ->whereStatus(Status::PUBLISHED)->orderBy('published', 'desc')->first();
     }
 
@@ -119,7 +119,7 @@ class EloquentPostRepository extends EloquentBaseRepository implements PostRepos
      */
     public function getNextOf($post)
     {
-        return $this->model->where('published', '>', $post->created_at)
+        return $this->model->where('published', '>', $post->published)
             ->whereStatus(Status::PUBLISHED)->first();
     }
 
